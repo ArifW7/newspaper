@@ -5,41 +5,24 @@ Admin Login
 @endpush
 
 @section('content')
-<div class="login-form">
-    <form action="" method="post">
-        <div class="form-group">
-            <label>Email Address</label>
-            <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
-        </div>
-        <div class="login-checkbox">
-            <label>
-                <input type="checkbox" name="remember">Remember Me
-            </label>
-            <label>
-                <a href="#">Forgotten Password?</a>
-            </label>
-        </div>
-        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
-        <div class="social-login-content">
-            <div class="social-button">
-                <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
-                <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
+<div class="register-container">
+    <div class="register-box">
+        <h2>Admin Login</h2>
+        <form action="{{ route('login') }}" method="post">
+            @csrf
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
             </div>
-        </div>
-    </form>
-    <div class="register-link">
-        <p>
-            Don't you have account?
-            <a href="#">Sign Up Here</a>
-        </p>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="register-btn">Register</button>
+            <div class="login-link">
+                Don't Have an account? <a href="{{ route('register') }}">Sign Up</a>
+            </div>
+        </form>
     </div>
 </div>
 @endsection
-
-@push('js')
-
-@endpush

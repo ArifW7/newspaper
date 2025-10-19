@@ -4760,10 +4760,26 @@ a:hover {
 .table-data3 thead {
     background: #333;
 }
+ul.statuslist{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+}
+ul.statuslist li {
+    display: inline-block;
+    position: relative;
+    padding: 0 5px;
+}
+.check-all{
+    width: 23px;
+    height: 22px;
+    cursor: pointer;
+}
 
 .table-data3 thead tr th {
     font-size: 16px;
-    color: #fff;
+    color: #000;
     font-weight: 400;
     text-transform: capitalize;
     padding: 18px 40px;

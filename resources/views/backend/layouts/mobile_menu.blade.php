@@ -2,7 +2,7 @@
         <div class="container-fluid">
             <div class="header-mobile-inner">
                 <a class="logo" href="index.html">
-                    <img src="{{ asset('backend/images/icon/logo.png') }}" alt="CoolAdmin" />
+                    <img src="{{ !empty(Auth::user()->image) ? url(Auth::user()->image) : url('backend/images/icon/avatar-01.jpg') }}" alt="CoolAdmin" />
                 </a>
                 <button class="hamburger hamburger--slider" type="button">
                     <span class="hamburger-box">

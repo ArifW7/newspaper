@@ -28,6 +28,7 @@
     <!-- Main CSS-->
     <link href="{{ asset('backend/css/theme.css') }}" rel="stylesheet" media="all">
 
+
     @stack('css')
 </head>
 
@@ -46,7 +47,7 @@
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
+            <header class="header-desktop d-none d-md-block">
                 @include('backend.layouts.pc_menu')
             </header>
             <!-- HEADER DESKTOP-->
@@ -60,14 +61,13 @@
         </div>
 
     </div>
-
     <!-- Jquery JS-->
     <script src="{{ asset('backend/js/vanilla-utils.js') }}"></script>
     <!-- Bootstrap JS-->
     <script src="{{ asset('backend/vendor/bootstrap-5.3.8.bundle.min.js') }}"></script>
     <!-- Vendor JS-->
     <script src="{{ asset('backend/vendor/perfect-scrollbar/perfect-scrollbar-1.5.6.min.js') }}"></script>
-    <script src="vendor/chartjs/chart.umd.js-4.5.0.min.js') }}"></script>
+    <script src="{{ asset('backend/vendor/chartjs/chart.umd.js-4.5.0.min.js') }}"></script>
 
     <!-- Main JS-->
     <script src="{{ asset('backend/js/bootstrap5-init.js') }}"></script>
@@ -75,6 +75,20 @@
     <script src="{{ asset('backend/js/swiper-bundle-11.2.10.min.js') }}"></script>
     <script src="{{ asset('backend/js/aos.js') }}"></script>
     <script src="{{ asset('backend/js/modern-plugins.js') }}"></script>
+    <script src="{{ asset('backend/js/jquery-3.7.1.min.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkAll = document.querySelector('.check-all');
+            const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+            if (checkAll) {
+                checkAll.addEventListener('click', function() {
+                    checkboxes.forEach(cb => cb.checked = checkAll.checked);
+                });
+            }
+        });
+        const jQ = jQuery.noConflict();
+    </script> 
 
     @stack('js')
 </body>

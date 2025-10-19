@@ -12,22 +12,120 @@
     <!-- Title Page-->
     <title>@stack('title')</title>
 
-    <!-- Fontfaces CSS-->
-    <link href="{{ asset('backend/css/font-face.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('backend/vendor/fontawesome-7.0.1/css/all.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('backend/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+    <style>
+        body {
+            background: linear-gradient(135deg, #74ABE2 0%, #5563DE 100%);
+            font-family: 'Poppins', sans-serif;
+        }
 
-    <!-- Bootstrap CSS-->
-    <link href="{{ asset('backend/vendor/bootstrap-5.3.8.min.css') }}" rel="stylesheet" media="all">
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
 
-    <!-- Vendor CSS-->
-    <link href="{{ asset('backend/css/aos.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('backend/vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('backend/css/swiper-bundle-11.2.10.min.css') }}" rel="stylesheet" media="all">
-    <link href="{{ asset('backend/vendor/perfect-scrollbar/perfect-scrollbar-1.5.6.css') }}" rel="stylesheet" media="all">
+        .register-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 40px 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 0.8s ease;
+        }
 
-    <!-- Main CSS-->
-    <link href="{{ asset('backend/css/theme.css') }}" rel="stylesheet" media="all">
+        .register-box h2 {
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .register-box label {
+            font-weight: 500;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .register-box input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px 15px;
+            margin-top: 6px;
+            margin-bottom: 14px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .register-box input:focus {
+            border-color: #5A67D8;
+            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
+            outline: none;
+        }
+
+        .register-btn {
+            width: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        }
+
+        .social-btn {
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px;
+            color: #fff;
+            font-weight: 500;
+            border: none;
+            margin-top: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .facebook-btn {
+            background: #1877F2;
+        }
+
+        .twitter-btn {
+            background: #1DA1F2;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #e53e3e;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
     @stack('css')
 
 </head>
@@ -38,11 +136,6 @@
             <div class="container">
                 <div class="login-wrap">
                     <div class="login-content">
-                        <div class="login-logo">
-                            <a href="#">
-                                <img src="{{ asset('backend/images/icon/logo.png') }}" alt="CoolAdmin">
-                            </a>
-                        </div>
                         @yield('content')
                     </div>
                 </div>
@@ -51,20 +144,7 @@
 
     </div>
 
-    <!-- Jquery JS-->
-    <script src="{{ asset('backend/js/vanilla-utils.js') }}"></script>
-    <!-- Bootstrap JS-->
-    <script src="{{ asset('backend/vendor/bootstrap-5.3.8.bundle.min.js') }}"></script>
-    <!-- Vendor JS       -->
-    <script src="{{ asset('backend/vendor/perfect-scrollbar/perfect-scrollbar-1.5.6.min.js') }}"></script>
-    <script src="{{ asset('backend/vendor/chartjs/chart.umd.js-4.5.0.min.js') }}"></script>
-
-    <!-- Main JS-->
-    <script src="{{ asset('backend/js/bootstrap5-init.js') }}"></script>
-    <script src="{{ asset('backend/js/main-vanilla.js') }}"></script>
-    <script src="{{ asset('backend/js/swiper-bundle-11.2.10.min.js') }}"></script>
-    <script src="{{ asset('backend/js/aos.js') }}"></script>
-    <script src="{{ asset('backend/js/modern-plugins.js') }}"></script>
+   
     @stack('js')
 </body>
 
