@@ -18,7 +18,7 @@ Route::group(['middleware'=> ['guest:web']],function () {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
 });
 
 Route::group(['prefix' => 'user','middleware' => ['auth:web']], function () {

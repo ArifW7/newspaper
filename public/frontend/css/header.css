@@ -1,0 +1,182 @@
+ /* Header */
+  header.site-header {
+    background: var(--brand-color);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    /* bottom: 0; */
+    /* z-index: 5000; */
+    top: 0;
+    z-index: 1030;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+ 
+.trending {
+  margin-top: 80px; 
+}
+  /* .brand-logo svg { height: 48px; width: auto; } */
+
+.brand-logo img{
+width: 70px; height: auto;
+}
+/* Sidebar (right side) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -260px;    /* hide it outside of the screen on the right */
+    width: 240px;
+    height: 100%;
+    background: #124B65;
+    color: #fff;
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 2000;
+}
+.sidebar.active {
+    right: 0;  /* slide in from right */
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.sidebar-header h5 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-menu li {
+    margin: 15px 0;
+}
+.sidebar-menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    transition: color 0.3s ease;
+}
+.sidebar-menu li a:hover {
+    color: #ffd700;
+}
+.fa-search{
+    font-size: 18px;
+}
+
+/* Fullscreen Search Overlay */
+.search-overlay {
+    position: fixed;
+    top: 0; /* will adjust with JS */
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    z-index: 5000;
+}
+
+.search-overlay-content {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+.search-overlay input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    border: none;
+}
+
+.search-overlay .close-search {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+}
+.overlay-search-btn{
+    background-color:rgb(18 75 101 / .8); ;
+    cursor: pointer;
+    height: auto;
+    width: auto;
+    border: none;
+    color: white;
+    padding: 14px 36px;
+    font-size: 20px;
+}
+.overlay-search-btn:hover{
+    background-color:rgba(6, 95, 136, 0.8); 
+      color: white;
+   
+}
+
+
+
+/* Mobile Menu Button */
+.menu-toggle {
+    display: block;
+    font-size: 24px;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+  /* Pills */
+  .trending-pill {
+    background: var(--brand-color);
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .topic-pill {
+    background: #E9EEF2;
+    color: var(--hover-color);
+    border-radius: 999px;
+    padding: 6px 12px;
+    margin-right: 8px;
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+  }
+  .topic-pill:hover {
+    background: var(--hover-color);
+    color: #fff;
+  }
+
+
+
+
+
+  

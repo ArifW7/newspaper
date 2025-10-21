@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -108,6 +109,7 @@ class NewsController extends Controller
         if ($action == 'update') {
             $check = $r->validate([
                 'title' => 'required|max:255',
+                'priority' => 'nullable|numeric',
                 'category_id' => 'nullable|numeric',
                 'short_description' => 'nullable|string',
                 'description' => 'nullable|string',
@@ -115,11 +117,12 @@ class NewsController extends Controller
                 'video_url' => 'nullable|url|max:255',
                 'seo_description' => 'nullable|max:250',
                 'seo_keyword' => 'nullable|string|max:250',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+                'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'status' => 'nullable',
                 'is_featured' => 'nullable',
                 'published_at' => 'nullable|date',
+                'tags' => 'nullable|string',
             ]);
             
 
@@ -133,6 +136,7 @@ class NewsController extends Controller
             $item->seo_keyword = $r->seo_keyword;
             $item->status = $r->status ? 'active' : 'inactive';
             $item->is_featured = $r->is_featured ? 1 : 0;
+            $item->priority = $r->priority ?? 0;
 
             if ($r->hasFile('image')) {
                 $file = $r->image;
@@ -160,6 +164,26 @@ class NewsController extends Controller
             if ($r->published_at) {
                 $item->published_at = $r->published_at;
             }
+
+            if ($r->filled('tags')) {
+                $tagIds = collect(explode(',', $r->tags))
+                    ->map(function ($t) {
+                        $name = trim($t);
+                        $slug = Str::slug($name);
+
+                        // Create or get existing tag by slug (avoid duplicates)
+                        $tag = Tag::firstOrCreate(
+                            ['slug' => $slug],
+                            ['name' => $name]
+                        );
+
+                        return $tag->id;
+                    })
+                    ->toArray();
+
+                $item->tags()->sync($tagIds);
+            }
+
             $item->save();
         }
 
@@ -173,5 +197,4 @@ class NewsController extends Controller
         $categories = DB::table('categories')->where('status','active')->get();
         return view('backend.news.newsEdit', compact('item','categories')); 
     }
-
 }

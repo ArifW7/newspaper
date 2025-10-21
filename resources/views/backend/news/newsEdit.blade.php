@@ -1,6 +1,45 @@
 @extends('backend.app')
 @push('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
+<style>
+    #tag-container {
+        background: #f9fafb;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
+        transition: all 0.2s ease-in-out;
+    }
+    #tag-container:focus-within {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 3px rgba(13,110,253,0.15);
+    }
+
+    .tag {
+        background-color: #0d6efd;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        margin: 3px;
+        box-shadow: 0 2px 4px rgba(13,110,253,0.2);
+        animation: fadeIn 0.2s ease-in;
+    }
+    .tag span {
+        margin-left: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+    .tag span:hover {
+        color: #ffd700;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
 @endpush
 
 @section('content')
@@ -50,7 +89,7 @@
 
                                     <div class="mb-3">
                                         <label class="form-label">Description</label>
-                                        <textarea name="description" class="form-control summernote {{ $errors->has('description')?'error':'' }}" rows="4" placeholder="Enter Description">{!! $item->description !!}</textarea>
+                                        <textarea name="description" class="form-control summernote {{ $errors->has('description')?'error':'' }}" rows="4" placeholder="Enter Description">{!! $item->description ?? old('short_description') !!}</textarea>
                                         @if ($errors->has('description'))
                                             <div class="text-error">{{ $errors->first('description') }}</div>
                                         @endif
@@ -138,6 +177,36 @@
                             </div>
                         </div>
 
+
+                        <div class="card shadow-sm border-0">
+                            <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                <h4 class="card-title mb-0 text-primary">
+                                    <i class="fas fa-tags me-2"></i>Tags
+                                </h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="tag-input" class="fw-semibold text-secondary">Add Tags</label>
+
+                                        <div id="tag-container" class="p-2 form-control d-flex flex-wrap align-items-center" style="min-height:48px; cursor:text;">
+                                            @foreach($item->tags as $tag)
+                                                <div class="tag" bis_skin_checked="1">{{ $tag->name }}<span onclick="removeTag('{{ $tag->name }}')">×</span></div>
+                                            @endforeach
+                                            <input type="text" id="tag-input" class="border-0 flex-grow-1" placeholder="Type and press Enter" style="outline:none;">
+                                        </div>
+                                        <input type="hidden" name="tags" id="tags-hidden" value="{{ old('tags', isset($item) ? $item->tags->pluck('name')->implode(',') : '') }}">
+
+
+                                        @if ($errors->has('tags'))
+                                            <p class="text-danger small m-0">{{ $errors->first('tags') }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="card">
                             <div class="card-header" style="border-bottom: 1px solid #e3ebf3;">
                                 <h4 class="card-title">Action</h4>
@@ -157,6 +226,14 @@
                                                 <label class="form-check-label" for="is_featured">Featured</label>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Priority</label>
+                                        <input type="number" name="priority" placeholder="Enter Priority Serial" class="form-control form-control-sm" value="{{ $item->priority ?? old('priority') }}">
+                                        @if ($errors->has('priority'))
+                                            <div class="text-error">{{ $errors->first('priority') }}</div>
+                                        @endif
                                     </div>
 
 
@@ -200,6 +277,56 @@
             ]
         });
     });
+
+    const tagContainer = document.getElementById('tag-container');
+    const input = document.getElementById('tag-input');
+    const hidden = document.getElementById('tags-hidden');
+    let tags = [];
+
+    // Initialize tags from hidden input
+    document.addEventListener('DOMContentLoaded', () => {
+        const existing = hidden.value.trim();
+        if(existing) {
+            tags = existing.split(',').map(t => t.trim()).filter(t => t !== '');
+            tags.forEach(addTag); // render each tag
+        }
+    });
+
+    // Add tag on Enter
+    input.addEventListener('keydown', function(e) {
+        if(e.key === 'Enter' && this.value.trim() !== '') {
+            e.preventDefault();
+            addTag(this.value.trim());
+            this.value = '';
+        }
+    });
+
+    // Add tag function
+    function addTag(text) {
+        if(tags.includes(text)) return; // prevent duplicates
+        tags.push(text);
+
+        const tagEl = document.createElement('div');
+        tagEl.className = 'tag';
+        tagEl.innerHTML = `${text}<span onclick="removeTag('${text}')">&times;</span>`;
+        tagContainer.insertBefore(tagEl, input);
+
+        updateHidden();
+    }
+
+    // Remove tag function
+    function removeTag(text) {
+        tags = tags.filter(t => t !== text);
+        document.querySelectorAll('.tag').forEach(el => {
+            if(el.textContent.trim() === text + '×') el.remove();
+        });
+        updateHidden();
+    }
+
+    // Update hidden input
+    function updateHidden() {
+        hidden.value = tags.join(',');
+    }
 </script>
 @endpush
 

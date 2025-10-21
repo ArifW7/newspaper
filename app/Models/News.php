@@ -16,4 +16,10 @@ class News extends Model
     public function postDatas(){
         return $this->hasMany(News::class,'src_id');
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

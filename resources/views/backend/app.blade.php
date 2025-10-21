@@ -11,7 +11,7 @@
 
     @stack('meta')
 
-    <title>Dashboard @stack('title')</title>
+    <title>Dashboard @stack('title') </title>
     <link href="{{ asset('backend/css/font-face.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('backend/vendor/fontawesome-7.0.1/css/all.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('backend/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">

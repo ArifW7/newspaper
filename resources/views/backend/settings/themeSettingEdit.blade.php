@@ -125,7 +125,7 @@
                             <label class="form-label"><b>Title</b></label>
                             <input type="text" class="form-control" name="title" placeholder="Enter Title" value="{{$homedata->name}}">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 d-none">
                             <label class="form-label"><b>Serial</b></label>
                             <input type="number" class="form-control" name="serial" value="{{$homedata->serial}}">
                         </div>
@@ -134,15 +134,18 @@
                             <input type="number" class="form-control" name="limit" value="{{$homedata->news_limit}}">
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label"><b>News Section Type</b></label>
+                            <label class="form-label"><b>News Show Type</b></label>
                             <select class="form-control" name="section_type">
                                 <option value="">Select Type</option>
-                                <option value="1" {{$homedata->section_type==1?'selected':''}}>Individual News</option>
-                                <option value="2" {{$homedata->section_type==2?'selected':''}}>Category News</option>
-                                <option value="3" {{$homedata->section_type==3?'selected':''}}>Latest News</option>
-                                <option value="4" {{$homedata->section_type==4?'selected':''}}>Oldest News</option>
-                                <option value="5" {{$homedata->section_type==5?'selected':''}}>Featured News</option>
-                                <option value="6" {{$homedata->section_type==6?'selected':''}}>Most Views News</option>
+                                <option value="1" {{$homedata->section_type==1?'selected':''}}>ট্রেন্ডিং নিউজ</option>
+                                <option value="2" {{$homedata->section_type==2?'selected':''}}>জাতীয় নিউজ</option>
+                                <option value="3" {{$homedata->section_type==3?'selected':''}}>সারাদেশ নিউজ</option>
+                                <option value="4" {{$homedata->section_type==4?'selected':''}}>খেলা নিউজ</option>
+                                <option value="5" {{$homedata->section_type==5?'selected':''}}>আন্তর্জাতিক নিউজ</option>
+                                <option value="6" {{$homedata->section_type==6?'selected':''}}>বিনোদন নিউজ</option>
+                                <option value="7" {{$homedata->section_type==7?'selected':''}}>রাজনীতি নিউজ</option>
+                                <option value="8" {{$homedata->section_type==8?'selected':''}}>এক্সক্লুসিভ নিউজ</option>
+                                <option value="9" {{$homedata->section_type==9?'selected':''}}>অর্থনীতি নিউজ</option>
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -157,7 +160,7 @@
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label"><b>Product List</b></label>
+                            <label class="form-label"><b>News List</b></label>
                             <div class="SearchContain mb-3">
                                 <input type="text" class="form-control serchProducts" placeholder="Search Product here..">
                                 <div class="searchResultlist">

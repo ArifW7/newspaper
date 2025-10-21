@@ -1,0 +1,93 @@
+.lead-hero {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-order-1 { 
+  order: 1; 
+}
+.mobile-order-2 { 
+  order: 2; 
+}
+
+@media (min-width: 769px) {
+  .lead-hero {
+    flex-direction: row;
+    align-items: center;
+  }
+  .mobile-order-1 {
+     order: 2;
+     }
+  .mobile-order-2 { 
+    order: 1;
+   }
+}
+
+/* Small & Tablet devices */
+@media (max-width: 768px) {
+  .container-fluid { padding: 10px !important; }
+  .mobile-border { border: none !important; }
+
+  .trending-section .row {
+    --bs-gutter-x: 0;
+    margin: 5px 0 !important;
+  }
+
+  /* Opinion section move below lead cards */
+  .opinion-section { order: 3; margin-top: 15px; }
+
+  /* Grid items 2 per row on tab, 1 per row on mobile */
+  .news-grid .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .mobile-image{
+    width: 100%;
+  }
+
+
+
+   .footer-top .container {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin-bottom: 8px;
+  }
+
+  .editor {
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .footer-menu {
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .footer-menu li {
+    margin: 5px 8px;
+  }
+
+  .contact-info {
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+ 
+}
+ @media (min-width: 576px) {
+    .news-grid .col-12 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->text('video_url')->nullable();
+            $table->string('priority')->default(0);
             $table->boolean('is_featured')->default(false);
             $table->enum('status', ['temp', 'active', 'inactive'])->default('temp');
             $table->timestamp('published_at')->nullable();

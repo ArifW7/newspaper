@@ -1,7 +1,7 @@
 @extends('backend.app')
 
 @push('title')
-<title>Theme Setting</title>
+Theme Setting
 @endpush
 
 @push('css')
