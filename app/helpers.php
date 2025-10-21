@@ -134,3 +134,75 @@ if(!function_exists('update_option')){
 }
 
 
+if (!function_exists('getSectionItems')) {
+    function getSectionItems($section){
+        if (! $section instanceof \App\Models\ThemeSetting) {
+            $section = \App\Models\ThemeSetting::find($section);
+            if (! $section) return collect();
+        }
+
+        $limit = intval($section->news_limit ?? 0) ?: null;
+
+        switch ((int) ($section->section_type ?? 0)) {
+
+            case 2: // Latest news
+                return \App\Models\News::where('status', 'active')
+                    ->latest()
+                    ->when($limit, fn($q) => $q->take($limit))
+                    ->get();
+
+            case 3: // Most viewed news
+                return \App\Models\News::where('status', 'active')
+                    ->orderBy('views', 'desc')
+                    ->when($limit, fn($q) => $q->take($limit))
+                    ->get();
+
+            case 4: // Featured news
+                return \App\Models\News::where('status', 'active')
+                    ->where('is_featured', 1)
+                    ->latest()
+                    ->when($limit, fn($q) => $q->take($limit))
+                    ->get();
+
+            default: // Custom section with children
+                $children = $section->homeDataIds()
+                    ->whereNotNull('src_id')
+                    ->with(['news' => function ($q) {
+                        $q->where('status', 'active')
+                          ->orderByRaw('CASE WHEN priority = 0 OR priority IS NULL THEN 999999 ELSE priority END ASC');
+                    }])
+                    ->get();
+
+                $items = $children->map(fn($child) => $child->news)
+                                  ->flatten()
+                                  ->filter()
+                                  ->values();
+
+                return $limit ? $items->take($limit) : $items;
+        }
+    }
+}
+
+
+if (!function_exists('getHomeSections')) {
+    function getHomeSections($onlyActiveSections = true)
+    {
+        $query = \App\Models\ThemeSetting::whereNull('parent_id');
+
+        if ($onlyActiveSections) {
+            $query->where('status', 'active');
+        }
+
+        $sections = $query->orderBy('drag', 'asc')->get();
+
+        foreach ($sections as $section) {
+            $section->items = getSectionItems($section);
+        }
+
+        return $sections;
+    }
+}
+
+
+
+

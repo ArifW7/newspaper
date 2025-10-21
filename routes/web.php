@@ -8,7 +8,16 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\MenusController;
+use App\Http\Controllers\HomeController;
 
+// Frontend Route
+Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/news/{slug}', [HomeController::class, 'newsDetails'])->name('newsDetails');
+
+
+
+
+// Guest Routes
 Route::group(['middleware'=> ['guest:web']],function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store']);
@@ -17,10 +26,8 @@ Route::group(['middleware'=> ['guest:web']],function () {
 });
 
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
 
+// Authenticated Routes
 Route::group(['prefix' => 'user','middleware' => ['auth:web']], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

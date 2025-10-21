@@ -49,6 +49,7 @@
         transition: 0.3s;
         background: #fff;
         box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        height: 160px;
     }
 
     .ProductGridSection:hover {
@@ -144,8 +145,10 @@
                                 <option value="5" {{$homedata->section_type==5?'selected':''}}>আন্তর্জাতিক নিউজ</option>
                                 <option value="6" {{$homedata->section_type==6?'selected':''}}>বিনোদন নিউজ</option>
                                 <option value="7" {{$homedata->section_type==7?'selected':''}}>রাজনীতি নিউজ</option>
-                                <option value="8" {{$homedata->section_type==8?'selected':''}}>এক্সক্লুসিভ নিউজ</option>
-                                <option value="9" {{$homedata->section_type==9?'selected':''}}>অর্থনীতি নিউজ</option>
+                                <option value="8" {{$homedata->section_type==8?'selected':''}}>স্বাস্থ্য নিউজ</option>
+                                <option value="9" {{$homedata->section_type==9?'selected':''}}>এক্সক্লুসিভ নিউজ</option>
+                                <option value="10" {{$homedata->section_type==10?'selected':''}}>অর্থনীতি নিউজ</option>
+                                <option value="11" {{$homedata->section_type==11?'selected':''}}>প্রবাস নিউজ</option>
                             </select>
                         </div>
                         <div class="col-md-6">

@@ -18,4 +18,9 @@ class ThemeSetting extends Model
     public function homeDataIds(){
         return $this->hasMany(ThemeSetting::class,'parent_id');
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(ThemeSetting::class, 'parent_id');
+    }
 }

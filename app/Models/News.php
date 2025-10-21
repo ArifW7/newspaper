@@ -22,4 +22,9 @@ class News extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function themeSettings()
+    {
+        return $this->hasMany(ThemeSetting::class, 'src_id');
+    }
+
 }

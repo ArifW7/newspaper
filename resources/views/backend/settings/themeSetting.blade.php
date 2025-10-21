@@ -90,22 +90,26 @@ Theme Setting
                              <div class="col-md-5 section-info">
                                 <h4><span>Theme Name:</span> {{$homedata->name ?? 'Untitled Section'}}</h4>
                             </div>
-                            <div class="col-md-2 section-info">
+                            <div class="col-md-2 section-info d-none">
                                 <span>Serial Number:</span> {{$homedata->serial}}
                             </div>
-                            <div class="col-md-2 section-info">
+                            <div class="col-md-3 section-info">
                                 <span>News Limit:</span> {{$homedata->news_limit}}
                             </div>
-                            <div class="col-md-3 section-info">
+                            <div class="col-md-4 section-info">
                                 <span>News Type:</span>
                                 @switch($homedata->section_type)
-                                    @case(1)Indivisual News @break
-                                    @case(2)Category News @break
-                                    @case(3)Brand News @break
-                                    @case(4)Latest News @break
-                                    @case(5)Oldest News @break
-                                    @case(6)Featured News @break
-                                    @case(7)Most Views News @break
+                                    @case(1)ট্রেন্ডিং নিউজ @break
+                                    @case(2)জাতীয় নিউজ @break
+                                    @case(3)সারাদেশ নিউজ @break
+                                    @case(4)খেলা নিউজ @break
+                                    @case(5)আন্তর্জাতিক নিউজ @break
+                                    @case(6)বিনোদন নিউজ @break
+                                    @case(7)রাজনীতি নিউজ @break
+                                    @case(8) স্বাস্থ্য নিউজ @break
+                                    @case(9)এক্সক্লুসিভ নিউজ @break
+                                    @case(10)অর্থনীতি নিউজ @break
+                                    @case(11)প্রবাস নিউজ @break
                                     @default - @endswitch
                             </div>
                         </div>
