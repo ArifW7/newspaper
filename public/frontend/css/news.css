@@ -1,0 +1,28 @@
+
+.share-icon{
+    height: 18px;
+}
+.news-details p{
+    font-size: 17px;
+    line-height: 2.2rem;
+    font-weight: 500;
+}
+
+
+/* Sticky sidebar initial */
+.more-content {
+    position: relative; /* initial */
+    top: 0;
+}
+.follow-box {
+    background-color: rgb(202, 231, 221);
+}
+.news-priority{
+    width: 35px; 
+    height: 35px;
+     transform: rotate(-12deg);
+     background-color: #124b65;
+}
+/* .row {
+    align-items: flex-start; 
+} */

@@ -159,7 +159,6 @@ if (!function_exists('getSectionItems')) {
 
             case 4: // Featured news
                 return \App\Models\News::where('status', 'active')
-                    ->where('is_featured', 1)
                     ->latest()
                     ->when($limit, fn($q) => $q->take($limit))
                     ->get();

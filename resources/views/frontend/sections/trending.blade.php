@@ -9,7 +9,7 @@
             <div class="row lead-hero bottom-border">
                 <div class="col-lg-6 lead-content mobile-order-2 lead-left-border">
                     <p class="h1-title">{{ $lead->title }}</p>
-                    <p class="text-muted d-none d-md-block">{{ Str::limit($lead->short_description, 200) }}</p>
+                    <p class="text-muted d-none d-md-block">{{ Str::limit($lead->short_description, 250) }}</p>
                 </div>
                 <div class="col-lg-6 lead-image mobile-order-1">
                     <img class="article-img img-fluid mobile-image"

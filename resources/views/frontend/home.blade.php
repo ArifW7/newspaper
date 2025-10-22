@@ -1,10 +1,46 @@
 @extends('frontend.layouts.app')
-
+@push('css')
+<link href="{{ asset('frontend/css/home.css') }}" rel="stylesheet">
+<style>
+  .swiper-wrapper{
+      height: auto;
+  }
+  </style>
+@endpush    
 
 @section('title', 'Home - News Portal')
 @section('body_class', 'home-page')
 
 @section('content')
+<!-- Trending pills -->
+<section class="trending">
+    <div class="container">
+        <div class="mb-3 d-flex align-items-center flex-wrap gap-2 d-none d-lg-block">
+            <div class="trending-pill me-2">ট্রেন্ডিং</div>
+            <a class="topic-pill" href="#">জনপ্রিয়</a>
+            <a class="topic-pill" href="#">ড. মুহাম্মদ ইউনূস</a>
+            <a class="topic-pill" href="#">এশিয়া কাপ ২০২৫</a>
+            <a class="topic-pill" href="#">ডেঙ্গু</a>
+            <a class="topic-pill" href="#">নামাজের সময়সূচি</a>
+        </div>
+    </div>
+</section>
+{{-- tranding pills --}}
+
+<!-- Mobile Nav (Swiper) -->
+<div class="d-block d-lg-none my-2">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide trending-pill"><a class=" px-3" href="#">সর্বশেষ</a></div>
+            <div class="swiper-slide  "><a class="topic-pill px-3" href="#">জাতীয়</a></div>
+            <div class="swiper-slide "><a class="topic-pill px-3" href="#">রাজনীতি</a></div>
+            <div class="swiper-slide "><a class="topic-pill px-3" href="#">অর্থনীতি</a></div>
+            <div class="swiper-slide"><a class="topic-pill px-3" href="#">আন্তর্জাতিক</a></div>
+            <div class="swiper-slide "><a class="topic-pill px-3" href="#">খেলা</a></div>
+        </div>
+    </div>
+</div>
+
 <!-- trending section  -->
 @include('frontend.sections.trending', ['section' => $homeDatas->firstWhere('section_type', 1)])
 <!-- trending section  -->
