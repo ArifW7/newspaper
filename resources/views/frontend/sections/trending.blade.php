@@ -8,7 +8,7 @@
             @if($lead)
             <div class="row lead-hero bottom-border">
                 <div class="col-lg-6 lead-content mobile-order-2 lead-left-border">
-                    <p class="h1-title">{{ $lead->title }}</p>
+                    <p class="h1-title"><a href="{{ route('newsDetails', $lead->slug) }}">{{ $lead->title }}</a></p>
                     <p class="text-muted d-none d-md-block">{{ Str::limit($lead->short_description, 250) }}</p>
                 </div>
                 <div class="col-lg-6 lead-image mobile-order-1">
