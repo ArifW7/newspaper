@@ -57,7 +57,7 @@ class MenusController extends Controller
 
         $parent = Menu::find($menu->parent_id) ?? $menu;
         $pages = Post::where('type',0)->where('status','active')->get();
-        $categories = DB::table('categories')->where('status','active')->get();
+        $categories = DB::table('categories')->whereNull('parent_id')->where('status','active')->get();
 
         return view('backend.menus.menuEdit', compact('menu', 'parent', 'pages', 'categories'));
     }

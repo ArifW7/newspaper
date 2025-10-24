@@ -13,7 +13,17 @@ use App\Http\Controllers\HomeController;
 // Frontend Route
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/news/{slug}', [HomeController::class, 'newsDetails'])->name('newsDetails');
+Route::get('/category/{category_slug}', [HomeController::class, 'category'])->name('category');
+Route::get('/category/{category_slug}/{subcategory_slug}', [HomeController::class, 'subCategory'])->name('subCategory');
+Route::get('/page/{slug}', [HomeController::class, 'pageView'])->name('pageView');
 
+Route::get('/categoryDetails', function(){
+    return view('frontend.pages.category_details');
+});
+
+Route::get('/topicDetails', function(){
+    return view('frontend.pages.topic_details');
+})->name('topic.details');
 
 
 

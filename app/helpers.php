@@ -211,4 +211,20 @@ if (!function_exists('menu')) {
     }
 }
 
+if(!function_exists('banglaDate')){
+    function banglaDate($date) {
+        $english_months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        $bangla_months  = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে','জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর'];
+
+        $english_digits = ['0','1','2','3','4','5','6','7','8','9'];
+        $bangla_digits  = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+        $formatted = date('d F Y, h:i A', strtotime($date));
+
+        $formatted = str_replace($english_months, $bangla_months, $formatted);
+        $formatted = str_replace($english_digits, $bangla_digits, $formatted);
+        $formatted = str_replace(['AM','PM'], ['পূর্বাহ্ন','অপরাহ্ন'], $formatted);
+        return $formatted;
+    }
+}
+
 

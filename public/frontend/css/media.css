@@ -83,6 +83,21 @@
     font-size: 12px;
     line-height: 1.6;
   }
+
+  .swiper-slide.swiper-slide-active a {
+    background: var(--brand-color);
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.swiper-slide a:hover {
+    background: var(--brand-color) !important;
+}
  
 }
  @media (min-width: 576px) {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use File;
 
 class Menu extends Model
 {
@@ -33,34 +34,21 @@ class Menu extends Model
     public function menuLink()
     {
         // menu_type == 0 = Custom Link
-        // menu_type == 1 = Page Link (we could later relate with Posts)
-   
+        // menu_type == 1 = Page Link
+        // menu_type == 2 category link
         
         
         if($this->menu_type==1){
             if($this->pagelink){
-                return $this->pagelink->slug;
+                return '/page/'.$this->pagelink->slug;
             }else{
-                return $this->pagelink->name??'No-Menu';
+                return '/page/'.$this->pagelink->name??'No-Menu';
             }
-
         }elseif($this->menu_type==2){
             if($this->categoryLink){
-                return $this->categoryLink->slug;
+                return '/category/'.$this->categoryLink->slug;
             }else{
-                return $this->categoryLink->name??'No-Menu';
-            }
-        }elseif($this->menu_type==3){
-            if($this->servicelink){
-                return $this->servicelink->slug;
-            }else{
-                return $this->servicelink->name??'No-Menu';
-            }
-        }elseif($this->menu_type==4){
-            if($this->doctorlink){
-                return $this->doctorlink->slug;
-            }else{
-                return $this->doctorlink->name??'No-Menu';
+                return '/category/'.$this->categoryLink->name??'No-Menu';
             }
         }else {
             return $this->slug ? url($this->slug) : $this->name;
@@ -77,14 +65,6 @@ class Menu extends Model
         }elseif($this->menu_type==2){
             if($this->categoryLink){
                 return $this->categoryLink->name;
-            }
-        }elseif($this->menu_type==3){
-            if($this->servicelink){
-                return $this->servicelink->name;
-            }
-        }elseif($this->menu_type==4){
-            if($this->doctorlink){
-                return $this->doctorlink->name;
             }
         }else{
             return $this->name;

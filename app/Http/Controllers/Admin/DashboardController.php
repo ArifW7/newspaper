@@ -32,6 +32,8 @@ class DashboardController extends Controller
         	'site_phone' => 'required',
         	'site_email' => 'required|email',
             'site_map' => 'nullable',
+            'site_another_phone' => 'nullable',
+            'site_whatsapp' => 'nullable',
             'site_logo' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:1024',
     	]);
 
@@ -41,6 +43,8 @@ class DashboardController extends Controller
 	    	Setting::update_option('site_phone', $request->site_phone);
 	    	Setting::update_option('site_email', $request->site_email);
             Setting::update_option('site_map', $request->site_map);
+            Setting::update_option('site_another_phone', $request->site_another_phone);
+            Setting::update_option('site_whatsapp', $request->site_whatsapp);
 
         if($request->hasFile('site_logo')){
             $file = $request->file('site_logo');

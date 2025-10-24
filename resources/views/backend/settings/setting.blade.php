@@ -134,6 +134,19 @@
                                     <input type="text" class="form-control" id="site_phone" name="site_phone" value="{{ get_option('site_phone') }}" required>
                                 </div>
                             </div>
+                            <div class="form-group row mb-3">
+                                <label for="site_another_phone" class="col-sm-3 col-form-label form-label">Another Phone</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="site_another_phone" name="site_another_phone" value="{{ get_option('site_another_phone') }}">
+                                </div>
+                            </div>
+
+                             <div class="form-group row mb-3">
+                                <label for="site_whatsapp" class="col-sm-3 col-form-label form-label">Whatsapp Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="site_whatsapp" name="site_whatsapp" value="{{ get_option('site_whatsapp') }}">
+                                </div>
+                            </div>
 
                             <div class="form-group row mb-4">
                                 <label for="site_email" class="col-sm-3 col-form-label form-label">Site Email</label>

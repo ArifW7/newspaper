@@ -58,7 +58,7 @@
 <!-- end jatio -->
 
 <!-- area news filter  -->
-<section class="area-news-search container-fluid">
+<section class="area-news-search container-fluid d-none">
   <div class="section-title border-first bottom-dark-border  ps-2 mb-3">
     <h5 class="fw-bold m-0">এলাকার খবর</h5>
   </div>

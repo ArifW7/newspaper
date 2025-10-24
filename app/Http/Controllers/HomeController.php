@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ThemeSetting;
 use App\Models\News;
 use App\Models\Category;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -25,7 +26,7 @@ class HomeController extends Controller
 
         $relatedNews = News::where('status', 'active')
             ->where('category_id', $news->category_id)
-            ->where('id', '!=', $news->id) // বর্তমান নিউজ বাদ
+            ->where('id', '!=', $news->id)
             ->orderBy('created_at', 'desc')
             ->take(3)
             ->get();
@@ -43,8 +44,39 @@ class HomeController extends Controller
         return view('frontend.pages.news_details', compact('news', 'mostViews', 'latestNews', 'relatedNews'));
     }
 
-    public function category(Request $request){
-        $category = Category::with('news')->where('status', 1)->where('slug', $request->slug)->first();
-        return view('frontend.pages.category', compact('category'));
+    public function category($category_slug){
+        $category = Category::with('news')->where('status', 'active')->where('slug', $category_slug)->first();
+        $latests = News::latest()->where('status', 'active')->take(5)->get();
+        return view('frontend.pages.category', compact('category', 'latests'));
+    }
+
+    
+    public function subCategory($category_slug, $subcategory_slug){
+        $category = Category::where('slug', $category_slug)->firstOrFail();
+        
+        $subcategory = Category::with('news')
+            ->where('parent_id', $category->id)
+            ->where('slug', $subcategory_slug)
+            ->where('status', 'active')
+            ->firstOrFail();
+
+        $latests = News::where('status', 'active')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('frontend.pages.subcategory', compact('category', 'subcategory', 'latests'));
+    }
+
+
+    public function pageView($slug){
+        $page =Post::latest()->where('type',0)->where('slug',$slug)->first();
+        if(!$page){
+            return abort('404');
+        }
+        if($page->slug == 'contact-us'){
+            return view('frontend.pages.contactUs',compact('page'));
+        }
+        return view('frontend.pages.pageView',compact('page'));
     }
 }

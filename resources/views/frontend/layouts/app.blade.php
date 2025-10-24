@@ -16,6 +16,16 @@
     <link href="{{ asset('frontend/css/media.css') }}" rel="stylesheet">
     {{-- swiper css --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        .detailsLink{
+            text-decoration: none;
+            color: #131d24;
+        }
+        .detailsLink:hover{
+            text-decoration: underline;
+            color: #124b65;
+        }
+    </style>
     @stack('css')
 
 </head>
