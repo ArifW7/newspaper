@@ -13,8 +13,9 @@
                     alt="{{ $lead->title }}"
                     class="img-fluid mobile-image w-100 mb-3"
                 />
-
-                <h4 class="heading-title mb-2">{{ $lead->title }}</h4>
+                <a href="{{ route('newsDetails', $lead->slug) }}" class="detailsLink">
+                    <h4 class="heading-title mb-2">{{ $lead->title }}</h4>
+                </a>
                 <p class="text-muted">{{ Str::limit($lead->short_description, 200) }}</p>
             </div>
         </div>
@@ -24,7 +25,7 @@
             @foreach($section->items->skip(1)->take(3) as $item)
             <div class="row bottom-border mb-3">
                 <div class="col-lg-6 col-12">
-                    <a href="https://www.dhakapost.com/national/402517" class="text-decoration-none text-dark">
+                    <a href="{{ route('newsDetails', $item->slug) }}" class="detailsLink">
                         <h6 class="heading-title2 hover-link">{{$item->title}}</h6>
                     </a>
                 </div>
@@ -42,7 +43,7 @@
             @foreach($section->items->skip(4)->take(3) as $item)
             <div class="row bottom-border mb-3">
                 <div class="col-lg-6 col-12">
-                    <a href="https://www.dhakapost.com/national/402517" class="text-decoration-none text-dark">
+                    <a href="{{ route('newsDetails', $item->slug) }}" class="detailsLink">
                         <h6 class="heading-title2 hover-link">{{$item->title}}</h6>
                     </a>
                 </div>

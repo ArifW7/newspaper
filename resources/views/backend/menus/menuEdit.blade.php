@@ -105,6 +105,7 @@
                         <div class="accordion" id="accordionWrapa1">
                             @include('backend.menus.includes.customLink')
                             @include('backend.menus.includes.pagesList')
+                            @include('backend.menus.includes.category')
                         </div>
                     </div>
                 </div>
@@ -136,10 +137,9 @@
                                         <label class="form-label fw-semibold">Menu Location</label>
                                         <select class="form-control select2" name="location">
                                             <option value="">Select Location</option>
-                                            <option value="Category Menu" {{ $parent->location == 'Category Menu' ? 'selected' : '' }}>Category Menu</option>
                                             <option value="Header Menus" {{ $parent->location == 'Header Menus' ? 'selected' : '' }}>Header Menus</option>
-                                            <option value="Footer Quick Link" {{ $parent->location == 'Footer Quick Link' ? 'selected' : '' }}>Footer Quick Link</option>
-                                            <option value="Footer Services Link" {{ $parent->location == 'Footer Services Link' ? 'selected' : '' }}>Footer Services Link</option>
+                                            <option value="Fotter Menus" {{ $parent->location == 'Fotter Menus' ? 'selected' : '' }}>Fotter Menus</option>
+                                            <option value="Home Menus" {{ $parent->location == 'Home Menus' ? 'selected' : '' }}>Home Menus</option>
                                         </select>
                                     </div>
                                 </div>
@@ -164,9 +164,9 @@
                                                 @endif
                                                 {{ $menuli->menuName() ?: 'No Found' }}
                                                 <small class="text-muted ms-1">
-                                                    ( 
+                                                    (
                                                     @if($menuli->menu_type==1) Page 
-                                                    @elseif($menuli->menu_type==2) Department 
+                                                    @elseif($menuli->menu_type==2) Category 
                                                     @elseif($menuli->menu_type==3) Services 
                                                     @elseif($menuli->menu_type==4) Doctor 
                                                     @elseif($menuli->menu_type==0) Custom 

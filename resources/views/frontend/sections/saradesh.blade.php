@@ -12,15 +12,17 @@
         <div class="col-lg-9 col-12">
             <div class="row bottom-border">
                 <div class="col-lg-7 col-12">
+                    <a href="{{ route('newsDetails', $lead->slug) }}" class="detailsLink">
                     <img
                         src="{{ asset(getMedia($lead->id, 1, 1)) }}"
                         class="card-img-top"
                         alt="{{$lead->title}}"
                     />
+                    </a>
                 </div>
 
                 <div class="col-lg-5 col-12 px-0 right-border">
-                    <p class="heading-title mb-2">{{$lead->title}}</p>
+                    <p class="heading-title mb-2"><a href="{{ route('newsDetails', $lead->slug) }}" class="detailsLink">{{$lead->title}}</a></p>
                     <p class="text-muted small">{{ $lead->short_description }}</p>
                 </div>
             </div>
@@ -38,9 +40,11 @@
                 @foreach($section->items->skip(1)->take(4) as $item)
                 <div class="col-md-3 col-12 right-border">
                     <div class="border-0 h-100">
+                        <a href="{{ route('newsDetails', $lead->slug) }}">
                         <img src="{{ asset(getMedia($item->id, 1, 1)) }}" class="card-img-top" alt="{{$item->title}}"/>
+                        </a>
                         <div class="px-0">
-                            <h6 class="heading-title2">{{$item->title}}</h6>
+                            <h6 class="heading-title2"><a href="{{ route('newsDetails', $lead->slug) }}" class="detailsLink">{{$item->title}}</a></h6>
                         </div>
                     </div>
                 </div>

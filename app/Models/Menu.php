@@ -22,6 +22,10 @@ class Menu extends Model
             ->where('status', '<>', 'temp');
     }
     
+    public function categoryLink(){
+       return $this->belongsTo(Category::class,'src_id')->where('status','<>','temp');
+    }
+
     public function pagelink(){
        return $this->belongsTo(Post::class,'src_id')->where('type',0)->where('status','<>','temp');
     }
@@ -41,10 +45,10 @@ class Menu extends Model
             }
 
         }elseif($this->menu_type==2){
-            if($this->departmentlink){
-                return $this->departmentlink->slug;
+            if($this->categoryLink){
+                return $this->categoryLink->slug;
             }else{
-                return $this->departmentlink->name??'No-Menu';
+                return $this->categoryLink->name??'No-Menu';
             }
         }elseif($this->menu_type==3){
             if($this->servicelink){
@@ -71,8 +75,8 @@ class Menu extends Model
             }
 
         }elseif($this->menu_type==2){
-            if($this->departmentlink){
-                return $this->departmentlink->name;
+            if($this->categoryLink){
+                return $this->categoryLink->name;
             }
         }elseif($this->menu_type==3){
             if($this->servicelink){
@@ -112,4 +116,5 @@ class Menu extends Model
             ->where('status', '<>', 'temp')
             ->orderBy('view', 'asc');
     }
+
 }

@@ -8,14 +8,16 @@
             @if($lead)
             <div class="row lead-hero bottom-border">
                 <div class="col-lg-6 lead-content mobile-order-2 lead-left-border">
-                    <p class="h1-title"><a href="{{ route('newsDetails', $lead->slug) }}">{{ $lead->title }}</a></p>
-                    <p class="text-muted d-none d-md-block">{{ Str::limit($lead->short_description, 250) }}</p>
+                    <p class="h1-title"><a href="{{ route('newsDetails', $lead->slug) }}" class="detailsLink">{{ $lead->title }}</a></p>
+                    <p class="text-muted d-none d-md-block">{{ Str::limit($lead->short_description, 350) }}</p>
                 </div>
                 <div class="col-lg-6 lead-image mobile-order-1">
+                    <a href="{{ route('newsDetails', $lead->slug) }}">
                     <img class="article-img img-fluid mobile-image"
                         src="{{ asset(getMedia($lead->id, 1, 1)) }}"
                         alt="{{ $lead->title }}"
                     />
+                    </a>
                 </div>
             </div>
             @endif
@@ -29,7 +31,9 @@
                             <div class="col-6 col-lg-6">
                                 <div class="news-body">
                                     <h5 class="news-title heading-title2">
+                                        <a href="{{ route('newsDetails', $item->slug) }}" class="detailsLink">
                                         {{ $item->title }}
+                                        </a>
                                     </h5>
                                     <p class="news-text text-muted small">
                                         {{ $item->short_description }}
@@ -37,9 +41,11 @@
                                 </div>
                             </div>
                             <div class="col-6 col-lg-6">
+                                <a href="{{ route('newsDetails', $lead->slug) }}">
                                 <img src="{{ asset(getMedia($item->id, 1, 1)) }}"
                                     class="img-fluid mobile-image"
                                     alt="{{ $item->title }}"/>
+                                </a>
                             </div>
                         </div>
                     </article>
@@ -109,16 +115,20 @@
                         <div class="row g-2 align-items-center">
                             <!-- Left Content -->
                             <div class="col-6">
-                                <h6 class="heading-title2 mb-1">{{ $item->title }}</h6>
+                                <h6 class="heading-title2 mb-1">
+                                    <a href="{{ route('newsDetails', $item->slug) }}" class="detailsLink">
+                                        {{ $item->title }}
+                                    </a>
+                                </h6>
                             </div>
 
                             <!-- Right Image -->
                             <div class="col-6">
-                                <img
-                                    src="{{ asset(getMedia($item->id, 1, 1)) }}"
-                                    alt="{{ $item->title }}"
-                                    class="img-fluid mobile-image news-thumb"
-                                />
+                                <a href="{{ route('newsDetails', $item->slug) }}">
+                                    <img src="{{ asset(getMedia($item->id, 1, 1)) }}"
+                                        alt="{{ $item->title }}"
+                                        class="img-fluid mobile-image news-thumb"/>
+                                </a>
                             </div>
                         </div>
                     </article>

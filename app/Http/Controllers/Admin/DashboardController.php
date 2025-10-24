@@ -50,14 +50,6 @@ class DashboardController extends Controller
             Setting::update_option('site_logo', $fileName);
         }
 
-        if($request->hasFile('director_image')){
-            $file = $request->file('director_image');
-            $fileName = Str::random(15).'-'.$file->getClientOriginalName();
-            $destinationPath = public_path().'/uploads/';
-            $file->move($destinationPath,$fileName);
-            Setting::update_option('director_image', $fileName);
-        }
-
         return Redirect::back()->with('success', __('Settings edited Successfully'));
     }   
 

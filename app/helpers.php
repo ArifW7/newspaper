@@ -2,6 +2,9 @@
 
 use App\Models\Media;
 use App\Models\Setting;
+use App\Models\ThemeSetting;
+use App\Models\News;
+use App\Models\Menu;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
@@ -202,6 +205,10 @@ if (!function_exists('getHomeSections')) {
     }
 }
 
-
+if (!function_exists('menu')) {
+    function menu($location=null){
+    return Menu::latest()->where('status','active')->where('location',$location)->first();
+    }
+}
 
 

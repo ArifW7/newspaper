@@ -1,21 +1,19 @@
 <header class="site-header ">
     <div class="container d-flex align-items-center justify-content-between py-2">
         <!-- Left: Logo -->
-        <a class="brand-logo d-flex align-items-center text-decoration-none gap-2" href="#">
-            <img src="{{ asset('frontend//images/logo.png') }}" alt="Logo" style="width: 70px; height: auto;">
-            <span class="h4 m-0 text-light">বাংলা নিউজ</span>
+        <a class="brand-logo d-flex align-items-center text-decoration-none gap-2" href="{{ route('home') }}">
+            <img src="{{ asset('uploads/' . get_option('site_logo')) }}" alt="Logo" style="width: 70px; height: auto;">
+            <span class="h4 m-0 text-light">আনন্দ পত্রিকা</span>
         </a>
 
         <!-- Center: Navigation -->
+        @if(menu('Header Menus'))
         <ul class="d-none d-lg-flex align-items-center list-unstyled m-0 gap-4">
-            <li><a href="#" class="text-light text-decoration-none fw-semibold">সর্বশেষ</a></li>
-            <li><a href="#" class="text-light text-decoration-none fw-semibold">জাতীয়</a></li>
-            <li><a href="#" class="text-light text-decoration-none fw-semibold">রাজনীতি</a></li>
-            <li><a href="#" class="text-light text-decoration-none fw-semibold">অর্থনীতি</a></li>
-            <li><a href="#" class="text-light text-decoration-none fw-semibold">আন্তর্জাতিক</a></li>
-            <li><a href="#" class="text-light text-decoration-none fw-semibold">খেলা</a></li>
-            <li><a href="#" class="text-light text-decoration-none fw-semibold">বিনোদন</a></li>
+            @foreach(menu('Header Menus')->subMenus as $menu)
+            <li><a href="{{ asset($menu->menuLink()) }}" class="text-light text-decoration-none fw-semibold">{{ $menu->menuName() }} </a></li>
+            @endforeach
         </ul>
+        @endif
 
         <!-- Right: Search + Menu -->
         <div class="header-search d-flex align-items-center gap-3">
@@ -49,15 +47,13 @@
         <h5>Menu</h5>
         <button class="close-btn">&times;</button>
     </div>
+    @if(menu('Header Menus'))
     <ul class="sidebar-menu">
-        <li><a href="#">সর্বশেষ</a></li>
-        <li><a href="#">জাতীয়</a></li>
-        <li><a href="#">রাজনীতি</a></li>
-        <li><a href="#">অর্থনীতি</a></li>
-        <li><a href="#">আন্তর্জাতিক</a></li>
-        <li><a href="#">খেলা</a></li>
-        <li><a href="#">বিনোদন</a></li>
+        @foreach(menu('Header Menus')->subMenus as $menu)
+        <li><a href="{{ asset($menu->menuLink()) }}">{{ $menu->menuName() }} </a></li>
+        @endforeach
     </ul>
+    @endif
 </aside>
 
 <!-- Sidebar (Toggle Menu)  -->

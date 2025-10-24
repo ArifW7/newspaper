@@ -6,7 +6,7 @@
                 aria-expanded="false" 
                 aria-controls="pageLink"
                 style="font-size: 14px; background-color: #f8f9fa;">
-            Custom Link
+            Pages Link
         </button>
     </h2>
     <div id="pageLink" 

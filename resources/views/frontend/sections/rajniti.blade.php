@@ -10,12 +10,15 @@
         @if($lead)
         <div class="col-lg-6 col-md-12 right-border">
             <div class="main-news">
-                <img src="{{ asset(getMedia($lead->id, 1, 1)) }}"
-                     alt="{{ $lead->title }}"
-                    class="img-fluid mobile-image w-100 mb-3"
-                />
-
+                <a href="{{ route('newsDetails', $lead->slug) }}">
+                    <img src="{{ asset(getMedia($lead->id, 1, 1)) }}"
+                        alt="{{ $lead->title }}"
+                        class="img-fluid mobile-image w-100 mb-3"
+                    />
+                </a>
+            <a href="{{ route('newsDetails', $lead->slug) }}" class="detailsLink">
                 <h4 class="fw-bold mb-2">{{$lead->title}}</h4>
+            </a>
                 <p class="text-muted">{{Str::limit($lead->short_description, 150)}}</p>
             </div>
         </div>
@@ -27,15 +30,17 @@
             @foreach ($section->items->skip(1)->take(3)  as $item)
                 <div class="row border-bottom mb-3">
                     <div class="col-lg-6 col-12">
-                        <a href="https://www.dhakapost.com/national/402517" class="text-decoration-none text-dark">
+                        <a href="{{ route('newsDetails', $item->slug) }}" class="detailsLink">
                             <h6 class="heading-title2 hover-link">{{$item->title}}</h6>
                         </a>
                     </div>
                     <div class="col-lg-6 col-12">
-                        <img src="{{ asset(getMedia($item->id, 1, 1)) }}"
-                            alt="{{ $item->title }}"
-                            class="img-fluid mobile-image"
-                        />
+                        <a href="{{ route('newsDetails', $item->slug) }}" class="detailsLink">
+                            <img src="{{ asset(getMedia($item->id, 1, 1)) }}"
+                                alt="{{ $item->title }}"
+                                class="img-fluid mobile-image"
+                            />
+                        </a>
                     </div>
                 </div>
             @endforeach

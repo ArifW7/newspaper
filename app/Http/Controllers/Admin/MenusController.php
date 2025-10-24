@@ -57,8 +57,9 @@ class MenusController extends Controller
 
         $parent = Menu::find($menu->parent_id) ?? $menu;
         $pages = Post::where('type',0)->where('status','active')->get();
+        $categories = DB::table('categories')->where('status','active')->get();
 
-        return view('backend.menus.menuEdit', compact('menu', 'parent', 'pages'));
+        return view('backend.menus.menuEdit', compact('menu', 'parent', 'pages', 'categories'));
     }
 
 
@@ -137,6 +138,11 @@ class MenusController extends Controller
               'pages.*' => 'required|numeric',
               'parent' => 'required|numeric',
             ]);
+        }elseif($request->category){
+          $check = $request->validate([
+              'category.*' => 'required|numeric',
+              'parent' => 'required|numeric',
+            ]);
         }else{
             
         }
@@ -166,17 +172,16 @@ class MenusController extends Controller
           }
         }
         
-        if($request->depertment){
-            for ($i =0; $i < count($request->depertment); $i++){
+        if($request->category){
+            for ($i =0; $i < count($request->category); $i++){
               $items =new  Menu();
               $items->parent_id=$menu->id;
               $items->menu_type=2;
-              $items->src_id = $request->depertment[$i];
+              $items->src_id = $request->category[$i];
               $items->status='active';
               $items->addedby_id=auth::id();
               $items->save();
-
-          }
+            }
         }
         
         if($request->services){
